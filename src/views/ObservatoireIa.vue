@@ -27,7 +27,7 @@
                       bg-orange-100 text-orange-800 rounded-full
                       text-xs font-semibold tracking-wide
                       mx-auto lg:mx-0">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#F28C00]"></span>
+
             Observatoire IA — Afrique
           </div>
 
@@ -114,7 +114,6 @@
                     bg-emerald-50 text-emerald-700 rounded-full
                     text-xs font-semibold tracking-wide mb-4
                     border border-emerald-100">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#007A3D]"></span>
           9 indicateurs clés
         </div>
 
