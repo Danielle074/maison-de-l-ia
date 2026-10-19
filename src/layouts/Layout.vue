@@ -18,7 +18,9 @@
           />
         </RouterLink>
 
-        <!-- Navigation Links -->
+        <!-- ============================= -->
+        <!-- Navigation Desktop -->
+        <!-- ============================= -->
         <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
           <div
             v-for="link in navLinks"
@@ -37,7 +39,7 @@
               />
             </RouterLink>
 
-            <!-- Dropdown -->
+            <!-- Dropdown Desktop -->
             <div
               v-if="link.hasDropdown && link.children?.length"
               class="absolute left-0 top-full mt-2 w-56 rounded-lg border border-gray-100 bg-white shadow-lg
@@ -59,19 +61,171 @@
           </div>
         </nav>
 
-        <!-- CTA Button -->
-        <div class="flex items-center space-x-4 shrink-0">
+        <!-- ============================= -->
+        <!-- CTA Desktop + Burger Mobile -->
+        <!-- ============================= -->
+        <div class="flex items-center gap-3 shrink-0">
+          <!-- CTA visible uniquement desktop -->
           <Button
             as-child
-            class="bg-[#ED6609] hover:bg-[#ED6609]/90
+            class="hidden lg:inline-flex
+                   bg-[#ED6609] hover:bg-[#ED6609]/90
                    text-white font-medium rounded-full
                    px-6 py-2.5 text-xs sm:text-sm shadow-sm transition-all"
           >
             <RouterLink to="/construction">Connexion</RouterLink>
           </Button>
+
+          <!-- Burger Mobile -->
+          <button
+            type="button"
+            class="lg:hidden inline-flex items-center justify-center
+                   w-10 h-10 rounded-lg text-gray-700
+                   hover:bg-gray-100 transition-colors"
+            aria-label="Ouvrir le menu"
+            @click="isMobileMenuOpen = true"
+          >
+            <Menu class="w-6 h-6" />
+          </button>
         </div>
       </div>
     </header>
+
+    <!-- ============================= -->
+    <!-- Drawer Mobile -->
+    <!-- ============================= -->
+    <!-- Overlay -->
+    <Transition
+      enter-active-class="transition-opacity duration-300"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-200"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div
+        v-if="isMobileMenuOpen"
+        class="fixed inset-0 z-[60] bg-black/50 lg:hidden"
+        @click="isMobileMenuOpen = false"
+      ></div>
+    </Transition>
+
+    <!-- Panneau latéral -->
+    <Transition
+      enter-active-class="transition-transform duration-300 ease-out"
+      enter-from-class="translate-x-full"
+      enter-to-class="translate-x-0"
+      leave-active-class="transition-transform duration-200 ease-in"
+      leave-from-class="translate-x-0"
+      leave-to-class="translate-x-full"
+    >
+      <aside
+        v-if="isMobileMenuOpen"
+        class="fixed top-0 right-0 z-[70] h-full w-[85%] max-w-sm
+               bg-white shadow-2xl lg:hidden
+               flex flex-col"
+      >
+        <!-- Header du drawer -->
+        <div class="flex items-center justify-between px-5 h-16 border-b">
+          <img
+            :src="miaLogo"
+            alt="MIA"
+            class="h-9 w-auto object-contain"
+          />
+          <button
+            type="button"
+            class="inline-flex items-center justify-center
+                   w-10 h-10 rounded-lg text-gray-700
+                   hover:bg-gray-100 transition-colors"
+            aria-label="Fermer le menu"
+            @click="isMobileMenuOpen = false"
+          >
+            <X class="w-6 h-6" />
+          </button>
+        </div>
+
+        <!-- Liens -->
+        <nav class="flex-1 overflow-y-auto px-5 py-4">
+          <ul class="space-y-1">
+            <li v-for="link in navLinks" :key="link.name">
+              <!-- Lien avec sous-menu (accordéon) -->
+              <template v-if="link.hasDropdown && link.children?.length">
+                <button
+                  type="button"
+                  class="w-full flex items-center justify-between
+                         px-3 py-3 rounded-lg text-left text-sm font-medium
+                         text-gray-700 hover:bg-gray-50 hover:text-[#ED6609]
+                         transition-colors"
+                  @click="toggleMobileSubmenu(link.name)"
+                >
+                  <span>{{ link.name }}</span>
+                  <ChevronDown
+                    class="w-4 h-4 text-gray-500 transition-transform duration-200"
+                    :class="{ 'rotate-180': openMobileSubmenu === link.name }"
+                  />
+                </button>
+
+                <!-- Sous-menu -->
+                <Transition
+                  enter-active-class="transition-all duration-200 overflow-hidden"
+                  enter-from-class="max-h-0 opacity-0"
+                  enter-to-class="max-h-96 opacity-100"
+                  leave-active-class="transition-all duration-200 overflow-hidden"
+                  leave-from-class="max-h-96 opacity-100"
+                  leave-to-class="max-h-0 opacity-0"
+                >
+                  <ul
+                    v-if="openMobileSubmenu === link.name"
+                    class="mt-1 ml-3 pl-3 border-l-2 border-[#ED6609]/30 space-y-1"
+                  >
+                    <li v-for="child in link.children" :key="child.name">
+                      <RouterLink
+                        :to="child.href"
+                        class="block px-3 py-2 rounded-md text-sm
+                               text-gray-600 hover:bg-gray-50 hover:text-[#ED6609]
+                               transition-colors"
+                        @click="isMobileMenuOpen = false"
+                      >
+                        {{ child.name }}
+                      </RouterLink>
+                    </li>
+                  </ul>
+                </Transition>
+              </template>
+
+              <!-- Lien simple -->
+              <RouterLink
+                v-else
+                :to="link.href"
+                class="block px-3 py-3 rounded-lg text-sm font-medium
+                       text-gray-700 hover:bg-gray-50 hover:text-[#ED6609]
+                       transition-colors"
+                @click="isMobileMenuOpen = false"
+              >
+                {{ link.name }}
+              </RouterLink>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- CTA en bas du drawer -->
+        <div class="p-5 border-t">
+          <Button
+            as-child
+            class="w-full bg-[#ED6609] hover:bg-[#ED6609]/90
+                   text-white font-medium rounded-full
+                   px-6 py-3 text-sm shadow-sm transition-all"
+          >
+            <RouterLink
+              to="/construction"
+              @click="isMobileMenuOpen = false"
+            >
+              Connexion
+            </RouterLink>
+          </Button>
+        </div>
+      </aside>
+    </Transition>
 
     <!-- ============================= -->
     <!-- Main Content Area -->
@@ -85,7 +239,6 @@
     <!-- ============================= -->
     <footer class="bg-green-900 text-white">
       <div class="max-w-[1200px] mx-auto px-4 md:px-6 pt-14 pb-8">
-        <!-- Grille principale -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           <!-- Branding Column -->
           <div class="lg:col-span-4 space-y-5">
@@ -103,7 +256,6 @@
               développement des talents en IA.
             </p>
 
-            <!-- Réseaux sociaux -->
             <div class="flex items-center gap-3 pt-2">
               <a
                 v-for="social in socials"
@@ -190,7 +342,6 @@
           </div>
         </div>
 
-        <!-- Séparateur -->
         <div class="mt-10 pt-8 border-t border-white/10">
           <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p class="text-xs text-white text-center sm:text-left">
@@ -212,6 +363,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { Button } from '@/components/ui/button'
 import {
   ChevronDown,
@@ -222,10 +374,27 @@ import {
   Twitter,
   Linkedin,
   Youtube,
+  Menu,
+  X,
 } from 'lucide-vue-next'
 
 // --- IMPORTS DES LOGOS ---
 import miaLogo from '@/assets/images/logomia.png'
+
+// --- ÉTAT DU MENU MOBILE ---
+const isMobileMenuOpen = ref(false)
+const openMobileSubmenu = ref<string | null>(null)
+
+const toggleMobileSubmenu = (name: string) => {
+  openMobileSubmenu.value = openMobileSubmenu.value === name ? null : name
+}
+
+// Bloquer le scroll du body quand le menu est ouvert
+watch(isMobileMenuOpen, (open) => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = open ? 'hidden' : ''
+  }
+})
 
 // --- RÉSEAUX SOCIAUX ---
 const socials = [
@@ -242,13 +411,22 @@ const navLinks = [
     href: '/',
     hasDropdown: true,
     children: [
-      { name: 'Notre équipe', href: '/notre-equipe' },
-      { name: 'Nos experts', href: '/nos-experts' },
+      { name: 'Notre équipe', href: '/mia/equipe' },
+      { name: 'Nos experts', href: '/mia/experts' },
     ],
   },
   { name: 'Kand’IA local', href: '/kandia-local/kandia', hasDropdown: false },
   { name: 'Projets', href: '/projets', hasDropdown: false },
-  { name: 'Publications', href: '/publications', hasDropdown: false },
+  {
+    name: 'Publications',
+    href: '/publications',
+    hasDropdown: true,
+    children: [
+      { name: 'Nos livres', href: '/publications/livres' },
+      { name: 'Nos rapports', href: '/publications/rapports' },
+      { name: 'Articles scientifiques', href: '/publications/articles-scientifiques' },
+    ],
+  },
   {
     name: 'Observatoire IA',
     href: '/observatoire-ia',

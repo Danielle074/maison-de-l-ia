@@ -52,7 +52,7 @@
                      font-medium shadow-sm hover:shadow-md
                      transition-all hover:-translate-y-0.5"
             >
-              <RouterLink to="/observatoire/carte">
+              <RouterLink to="/construction">
                 <MapIcon class="w-4 h-4 mr-2" />
                 Explorer la carte
               </RouterLink>
@@ -65,7 +65,7 @@
                      font-medium shadow-sm hover:shadow-md
                      transition-all hover:-translate-y-0.5"
             >
-              <RouterLink to="/observatoire/comparaisons">
+              <RouterLink to="/observatoire-ia/comparaison">
                 <BarChart3 class="w-4 h-4 mr-2" />
                 Voir les comparaisons
               </RouterLink>
@@ -78,7 +78,7 @@
                      font-medium shadow-sm hover:shadow-md
                      transition-all hover:-translate-y-0.5"
             >
-              <RouterLink to="/observatoire/classement">
+              <RouterLink to="/construction">
                 <Trophy class="w-4 h-4 mr-2" />
                 Voir le classement
               </RouterLink>
@@ -247,7 +247,7 @@
           <div class="inline-flex items-center gap-2 self-start
                       px-3.5 py-1.5 bg-white/15 backdrop-blur
                       rounded-full text-xs font-semibold">
-            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+
             Rejoignez le mouvement
           </div>
 

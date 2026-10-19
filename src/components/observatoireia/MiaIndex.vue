@@ -35,21 +35,21 @@
             <!-- Groupe de boutons d'actions -->
             <div class="flex flex-wrap items-center gap-3 pt-2">
               <RouterLink
-                to="/observatoire-ia/carte"
+                to="/construction"
                 class="bg-[#ED6609] hover:bg-[#ED6609]/90 text-white font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-colors shadow-sm"
               >
                 Explorer la carte
               </RouterLink>
 
               <RouterLink
-                to="/observatoire-ia/comparaisons"
+                to="/observatoire-ia/comparaison"
                 class="bg-[#E08328] hover:bg-[#E08328]/90 text-white font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-colors shadow-sm"
               >
                 Voir les comparaisons
               </RouterLink>
 
               <RouterLink
-                to="/observatoire-ia/classement"
+                to="/construction"
                 class="bg-[#035E32] hover:bg-[#035E32]/90 text-white font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-colors shadow-sm"
               >
                 Voir le classement

@@ -41,7 +41,7 @@
                   bg-amber-100 text-amber-800
                   rounded-full text-xs font-bold
                   tracking-wide uppercase">
-        <span class="w-2 h-2 rounded-full bg-[#F28C00] animate-pulse"></span>
+      
         En construction
       </div>
 

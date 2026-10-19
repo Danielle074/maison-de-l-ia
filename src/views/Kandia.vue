@@ -101,47 +101,47 @@ const universities = [
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
   {
     name: 'Université Peleforo Gon Coulibaly de Korhogo (UPGC)',
     logo: upgcLogo,
-    link: '/universites/upgc'
+    link: '/kandia-local/upgc'
   },
 ]
 </script>
