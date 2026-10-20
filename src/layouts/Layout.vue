@@ -9,12 +9,21 @@
                h-16 sm:h-20
                flex items-center justify-between gap-3 sm:gap-4"
       >
-        <!-- Logo MIA -->
-        <RouterLink to="/" class="flex items-center shrink-0">
+        <!-- Logos MIA + ARTCI -->
+        <RouterLink to="/" class="flex items-center gap-3 sm:gap-4 shrink-0">
           <img
             :src="miaLogo"
             alt="MIA — La Maison de l'Intelligence Artificielle"
             class="h-9 sm:h-11 md:h-12 w-auto object-contain"
+          />
+          
+          <!-- Séparateur visuel (optionnel mais propre) -->
+          <div class="h-6 sm:h-8 w-px bg-gray-200"></div>
+
+          <img
+            :src="artciLogo"
+            alt="ARTCI — Autorité de Régulation des Télécommunications"
+            class="h-7 sm:h-9 md:h-10 w-auto object-contain"
           />
         </RouterLink>
 
@@ -125,13 +134,21 @@
                bg-white shadow-2xl lg:hidden
                flex flex-col"
       >
-        <!-- Header du drawer -->
+        <!-- Header du drawer avec les deux logos -->
         <div class="flex items-center justify-between px-5 h-16 border-b">
-          <img
-            :src="miaLogo"
-            alt="MIA"
-            class="h-9 w-auto object-contain"
-          />
+          <div class="flex items-center gap-2">
+            <img
+              :src="miaLogo"
+              alt="MIA"
+              class="h-8 w-auto object-contain"
+            />
+            <div class="h-5 w-px bg-gray-200"></div>
+            <img
+              :src="artciLogo"
+              alt="ARTCI"
+              class="h-6 w-auto object-contain"
+            />
+          </div>
           <button
             type="button"
             class="inline-flex items-center justify-center
@@ -380,6 +397,7 @@ import {
 
 // --- IMPORTS DES LOGOS ---
 import miaLogo from '@/assets/images/logomia.png'
+import artciLogo from '@/assets/images/logoartci.png' // <--- AJOUT ICI
 
 // --- ÉTAT DU MENU MOBILE ---
 const isMobileMenuOpen = ref(false)
